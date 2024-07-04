@@ -24,8 +24,9 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 </br>
 
 ## 📋 TODOs
-- ☐ Release more MLLMs on NPU.
-- ☐ Release the instruction-tuned model SEED-X-Edit for high-precision image editing on NPU.
+- [ ] Release more MLLMs on NPU.
+- [ ] Release the instruction-tuned model SEED-X-Edit for high-precision image editing on NPU.
+- [ ] Multimodal benchmarks.
 
 </br>
 
@@ -162,7 +163,7 @@ If you find the work helpful, please consider citing:
 </br>
 
 ## 🔎 License
-
+This project is under the Apache-2.0 License.
 </br>
 
 ## 👍 Acknowledgement
