@@ -1,0 +1,56 @@
+_target_: mllm_npu.data.datapipes.build_multi_datapipes
+_recursive_: False
+datapipes:
+  - _target_: mllm_npu.data.tasks.image_caption.build_caption_datapipes_with_pixels
+    data_dir: 
+      - /data/seed_data/LAION-COCO/
+    max_length: 600
+    batch_size: 28
+    similarity_thr: 0.1
+    min_resolution: 400
+    min_aspect_ratio: 0.1
+    use_caption_in_metadata: True
+    caption_key_in_metadata: 'caption'
+    img_first_ratio: 0.1
+    num_img_in_tokens: 64
+    num_img_out_tokens: 64
+    assure_text: True
+    cycle_count: 50
+    multi_resolution: True
+    resolution_grids: 
+      - 1x1
+      - 1x2
+      - 1x3
+      - 1x4
+      - 1x5
+      - 2x1
+      - 3x1
+      - 4x1
+      - 5x1
+      - 2x2
+      - 2x3
+      - 3x2
+    base_resolution: 448
+    dataset_name: 'laion-coco'
+
+  - _target_: mllm_npu.data.tasks.ocr.build_ocr_datapipes_caption
+    data_dir: /data/seed_data/LLaVAR-pretraining/data_format_pretrain
+    image_dir: /data/seed_data/LLaVAR-pretraining/pretrain_images
+    max_length: 512
+    batch_size: 4
+    num_img_in_tokens: 64
+    num_img_out_tokens: 64
+    cycle_count: 50
+    multi_resolution: True
+    resolution_grids: 
+      - 1x1
+      - 1x2
+      - 1x3
+      - 2x1
+      - 3x1
+      - 2x2
+    base_resolution: 448
+    dataset_name: 'llarvar'
+sample_weights:
+  - 0.5
+  - 0.5

@@ -1,0 +1,56 @@
+mllm:
+  mllm_model:
+    _target_: mllm_npu.models.mllm.GeneraliazedMultimodalModels.from_pretrained
+    # projector config
+    freeze_vision_encoder: True
+    vision_encoder:
+      _target_: mllm_npu.models.multimodal_encoder.siglip_vit.SigLIPVisionEncoder.from_pretrained
+      hidden_dim: 1152
+      output_dim: 4096
+      pretrained_model_name_or_path: google/siglip-so400m-patch14-384
+    projector:
+      _target_: mllm_npu.models.multimodal_projector.attention_resampler.AttentionResampler
+      grid_size: 8
+      embed_dim: 4096
+      num_heads: 32
+      kv_dim: 1152
+    lm_loss_scale: 1.0
+    add_patch_pos: False 
+    vit_down: True
+    mse: True
+  language_model:
+    # peft
+    _target_: mllm_npu.models.language_models.peft_models.get_peft_model_with_resize_embedding
+    peft_config:
+      _target_: peft.LoraConfig
+      _convert_: object
+      r: 32
+      lora_alpha: 32
+      modules_to_save:
+        - input_layernorm
+        - post_attention_layernorm
+        - norm
+      target_modules: 
+        - q_proj 
+        - v_proj 
+        - k_proj 
+        - o_proj 
+        - gate_proj 
+        - down_proj 
+        - up_proj
+      task_type: CAUSAL_LM
+      lora_dropout: 0.05
+    # llm model
+    model:
+      _target_: mllm_npu.models.language_models.llama3.LlamaForCausalLM.from_pretrained
+      pretrained_model_name_or_path: meta-llama/Meta-Llama-3-8B-Instruct-HF
+    vocab_size: 128587
+  # ViT config
+  tokenizer:
+    _target_: transformers.AutoTokenizer.from_pretrained
+    pretrained_model_name_or_path: pretrained/cvlm_llama3_tokenizer_100img_and_224loc_addpatch/
+  processor:
+    _target_: mllm_npu.data.processor.init_processor
+    processor_name: siglip_vit
+    processor_json: mllm_npu/configs/processor_configs/siglip_vit_processor_config.json
+  
