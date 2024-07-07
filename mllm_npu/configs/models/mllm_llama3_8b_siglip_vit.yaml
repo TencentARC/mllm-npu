@@ -16,7 +16,6 @@ mllm:
       kv_dim: 1152
     lm_loss_scale: 1.0
     add_patch_pos: False 
-    vit_down: True
     mse: True
   language_model:
     # peft

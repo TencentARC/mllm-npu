@@ -89,6 +89,7 @@ class AttentionResampler(nn.Module):
     Outputs:
         A tensor with the shape of (grid_size**2, embed_dim)
     """
+
     def __init__(self,
                  grid_size,
                  embed_dim,
@@ -130,35 +131,21 @@ class AttentionResampler(nn.Module):
             nn.init.constant_(m.weight, 1.0)
 
     def forward(self, x, attn_mask=None):
-        # BxN
+
         pos_embed = get_abs_pos(self.pos_embed, x.size(1))
 
         x = self.kv_proj(x)
-        # B(N)xLxD
-        x = self.ln_kv(x)
-        N = x.shape[0]
-        # NxL'xD
-        q = self.ln_q(self.query)
+        x = x.to(self.ln_kv.weight.dtype)
+        x = self.ln_kv(x).permute(1, 0, 2)
 
-        q = self._repeat(q, N) + self.pos_embed.unsqueeze(0)
-        q_len, q_dim = q.shape[1:]
-        # NxHxLxD'
-        q = q.view(N, q_len, self.num_heads, q_dim // self.num_heads)
-        k = x + pos_embed.unsqueeze(0)
-        k_len, k_dim = k.shape[1:]
-        k = k.view(N, k_len, self.num_heads, k_dim // self.num_heads)
-        v_len, v_dim = x.shape[1:]
-        v = x.view(N, v_len, self.num_heads, v_dim // self.num_heads)
-        softmax_scale = 1.0 / (q_dim // self.num_heads)**0.5
-        out = torch_npu.npu_fusion_attention(q,
-                                             k,
-                                             v,
-                                             head_num=self.num_heads,
-                                             input_layout="BSND",
-                                             keep_prob=1.,
-                                             scale=softmax_scale)[0]
-        out = out.reshape(N, q_len, -1)
-        return out
+        N = x.shape[1]
+        q = self.query.to(self.ln_q.weight.dtype)
+        q = self.ln_q(q)
+        out = self.attn(self._repeat(q, N) + self.pos_embed.unsqueeze(1),
+                        x + pos_embed.unsqueeze(1),
+                        x,
+                        attn_mask=attn_mask)[0]
+        return out.permute(1, 0, 2)
 
     def _repeat(self, query, N: int):
-        return query.unsqueeze(0).repeat(N, 1, 1)
+        return query.unsqueeze(1).repeat(1, N, 1)

@@ -26,7 +26,6 @@ mllm:
       embed_dim: 4096
       num_heads: 32
       kv_dim: 5120
-    vocab_size: 32330
     lm_loss_scale: 1.0
     rec_loss_scale: 3.0
     add_patch_pos: False 
@@ -59,6 +58,7 @@ mllm:
     model:
       _target_: mllm_npu.models.language_models.llama2.LlamaForCausalLM.from_pretrained
       pretrained_model_name_or_path: meta-llama/Llama-2-13b-chat-hf
+    vocab_size: 32330
   # ViT config
   tokenizer:
     _target_: transformers.LlamaTokenizer.from_pretrained
