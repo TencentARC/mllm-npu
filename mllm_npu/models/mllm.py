@@ -51,8 +51,7 @@ class GeneraliazedMultimodalModels(nn.Module):
                  projector,
                  freeze_vision_encoder=True,
                  lm_loss_scale=1.0,
-                 add_patch_pos=False,
-                 mse=False) -> None:
+                 add_patch_pos=False) -> None:
         super().__init__()
         self.language_model = language_model
         self.vision_encoder = vision_encoder
@@ -61,10 +60,6 @@ class GeneraliazedMultimodalModels(nn.Module):
         self.freeze_vision_encoder = freeze_vision_encoder
         self.lm_loss_scale = lm_loss_scale
         self.add_patch_pos = add_patch_pos
-
-        self.mse = mse
-        if self.mse:
-            self.mse_loss = torch.nn.MSELoss()
 
         self.add_patch_pos = add_patch_pos
         if self.add_patch_pos:
@@ -258,14 +253,16 @@ class SEED(GeneraliazedMultimodalModels):
                          projector=projector,
                          freeze_vision_encoder=freeze_vision_encoder,
                          lm_loss_scale=lm_loss_scale,
-                         add_patch_pos=add_patch_pos,
-                         mse=mse)
+                         add_patch_pos=add_patch_pos)
         self.output_projector = output_projector
         self.rec_loss_scale = rec_loss_scale
         self.vit_down = vit_down
         if self.vit_down:
             self.pool_size = 4
             self.stride = 4
+        self.mse = mse
+        if self.mse:
+            self.mse_loss = torch.nn.MSELoss()
 
     def forward(self,
                 input_ids,

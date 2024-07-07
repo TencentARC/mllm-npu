@@ -19,13 +19,12 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 </br>
 
 ## 📢 News
-**2024-07-03** 🔥 We release NPU-based multi-modal inference and pre-training code, and various ways to use SEED-X.
+**2024-07-08** 🔥 We release NPU-based multi-modal inference and pre-training code, and various ways to use SEED-X.
 
 </br>
 
 ## 📋 TODOs
 - [ ] Release more MLLMs on NPU.
-- [ ] Release the instruction-tuned model SEED-X-Edit for high-precision image editing on NPU.
 - [ ] Multimodal benchmarks.
 
 </br>
@@ -34,6 +33,7 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 
 - [Install](#🔨-install)
 - [Demo](#💻-demo)
+- [Model](#⚙️-Model)
 - [Dataset](#🌐-dataset)
 - [Train](#🏃-train)
 - [Evaluation](#🌟-evaluation)
@@ -123,6 +123,19 @@ To launch a Gradio demo locally, please run the following commands one by one. I
 
 </br>
 
+## ⚙️ Model
+
+We mainly adopt the `GeneraliazedMultimodalModels` in `[mllm.py](./mllm_npu/models/mllm.py)` as the overall architecture, which contains three basic modules:
+- (1) a **language model**, e.g., LLaMA-2.
+- (2) a **projector** to project image features into language embeddings.
+- (3) a **vision encoder**, e.g., ViT.
+
+
+The MLLM is built according to the model config with `hydra.utils.instantiate`, and you can find some samples in [models](./mllm_npu/configs/models).
+
+The [SEED-X](https://github.com/AILab-CVC/SEED-X) models additionaly contains an **output projector** to obtain the image embeddings for generating images.
+
+
 ## 🌐 Dataset
 
 You can prepare your own data to pre-train or fine-tune your model. Specifically, we provide four different tasks and corresponding formats (please refer to the [examples](./data/)). In order to use the data more efficiently, we use [webdataset](https://webdataset.github.io/webdataset/) to organize the data. Besides, please refer to [data.yaml](./seed_npu/configs/dataset/pretrain_data.yaml) for the index of the data. You can adjust the data sampling rate and other settings by setting it in this file.
@@ -130,6 +143,12 @@ You can prepare your own data to pre-train or fine-tune your model. Specifically
 </br>
 
 ## 🏃 Train
+
+You need to specify the **model config** and **data config** in the training scripts, such as `[scripts/mllm_llama3_8b_siglip_vit_pretrain.sh](./scripts/mllm_llama3_8b_siglip_vit_pretrain.sh)`.
+
+```bash
+bash scripts/mllm_llama3_8b_siglip_vit_pretrain.sh
+```
 
 </br>
 
@@ -141,14 +160,6 @@ coming soon
 ## 💡 Citation
 
 If you find the work helpful, please consider citing:
-
-- mllm_npu
-
-    ```bash
-    @article{
-
-    }
-    ```
 
 - SEED-X
 
@@ -164,12 +175,12 @@ If you find the work helpful, please consider citing:
 </br>
 
 ## 🔎 License
-This project is under the Apache-2.0 License.
+This project is under the Apache-2.0 License. For models built with LLaMA or Qwen models, please also adhere to their licenses!
 </br>
 
 ## 👍 Acknowledgement
 
-
+This project is developed based on the source code of [SEED-X]().
 
 
 

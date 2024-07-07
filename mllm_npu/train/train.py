@@ -23,17 +23,12 @@ from torchdata.dataloader2 import (DataLoader2, MultiProcessingReadingService,
                                    SequentialReadingService)
 import gc
 import logging
-# from accelerate import FullyShardedDataParallelPlugin, DistributedDataParallelKwargs
-# from torch.distributed.fsdp.fully_sharded_data_parallel import FullOptimStateDictConfig, FullStateDictConfig
-
 from mllm_npu.train.scheduler import get_scheduler
 
 print('============= train code')
 
 pyrootutils.setup_root(__file__, indicator='.project-root', pythonpath=True)
-# from src.train.dist_utils import all_gather
 
-# logger = get_logger(__name__, log_level='info')
 log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logging.basicConfig(level=logging.INFO, format=log_format)
 
