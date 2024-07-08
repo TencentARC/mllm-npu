@@ -6,11 +6,8 @@
     <img src="https://i.imgur.com/waxVImv.png">
 </p>
 
-#### <center>[[English]](./README.md) | [[中文]](./README_ZH.md)</center>
-
 <h4 align="center">
     <p>
-        <b>English</b> |
         <a href="https://github.com/TencentARC/mllm-npu/edit/main/README.md">English</a> |
         <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">中文</a> |
     </p>
