@@ -1,6 +1,6 @@
-<div style="text-align: center;">
-MLLM-NPU 
-</div>
+<h3 align="center">
+    <p>MLLM-NPU</p>
+</h3>
 
 <p align="center">
     <img src="https://i.imgur.com/waxVImv.png">
