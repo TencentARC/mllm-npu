@@ -322,7 +322,7 @@ class VisionTransformerWithAttnPool(nn.Module):
         return self(images)
 
     @classmethod
-    def from_pretrained(cls, pretrained_model_path=None, **kawrgs):
+    def from_pretrained(cls, pretrained_model_name_or_path=None, **kawrgs):
         if os.environ.get('DEBUG_FLAG', 'False') == 'True':
             print(
                 'DEBUG_FLAG is set to True, return a random initialized model')
@@ -338,9 +338,9 @@ class VisionTransformerWithAttnPool(nn.Module):
             return cls(**kawrgs)
         model = cls(**kawrgs)
 
-        if pretrained_model_path is not None:
+        if pretrained_model_name_or_path is not None:
             # print('Load ckpt of qwen visual encoder')
-            ckpt = torch.load(pretrained_model_path, map_location='cpu')
+            ckpt = torch.load(pretrained_model_name_or_path, map_location='cpu')
             load_zero3_checkpoint(model, ckpt)
 
         return model
