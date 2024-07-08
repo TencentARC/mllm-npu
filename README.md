@@ -1,4 +1,4 @@
-<div style="text-align: center;"> MLLM-NPU </div>
+<!-- <center> MLLM-NPU </center> -->
 
 <p align="center">
     <img src="https://i.imgur.com/waxVImv.png">
