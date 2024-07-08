@@ -40,7 +40,7 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 
 ## 📋 TODOs
 
-`This project is **under active development**, please stay tuned ☕️ !`
+This project is **under active development**, please stay tuned ☕️!
 
 - [ ] Model zoo on NPU.
 - [ ] Multimodal benchmarks.
@@ -152,6 +152,10 @@ You can prepare your own data to pre-train or fine-tune your model. Specifically
 Please refer to [dataset](./data/data.md) for more data information.
 
 ## 🏃 Train
+
+### Prepare Tokenizers
+
+For multimodal comprehension, we need to add special tokens to the tokenizers, such as `<img>` or `<patch>`, you can specify the path of the tokenizer in [scripts/tools/add_special_tokens_to_tokenizer.py](./scripts/tools/add_special_tokens_to_tokenizer.py) and directly run this scripts to obtain the updated tokenizer.
 
 ### Pre-training
 You need to specify the **model config** and **data config** in the training scripts, such as [`scripts/mllm_llama3_8b_siglip_vit_pretrain.sh`](./scripts/mllm_llama3_8b_siglip_vit_pretrain.sh).

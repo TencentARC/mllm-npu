@@ -15,8 +15,7 @@ mllm:
       num_heads: 32
       kv_dim: 1152
     lm_loss_scale: 1.0
-    add_patch_pos: False 
-    mse: True
+    add_patch_pos: True 
   language_model:
     # peft
     _target_: mllm_npu.models.language_models.peft_models.get_peft_model_with_resize_embedding
