@@ -1,0 +1,69 @@
+mllm:
+  mllm_model:
+    _target_: mllm_npu.models.mllm.SEED.from_pretrained
+    freeze_vision_encoder: True
+    # ViT config
+    vision_encoder:
+      _target_: mllm_npu.models.multimodal_encoder.qwenvl_vit.VisionTransformerWithAttnPool.from_pretrained
+      heads: 16
+      image_size: 448
+      image_start_id": 151857
+      layers: 48
+      mlp_ratio: 4.9231
+      output_dim: 4096
+      patch_size: 14
+      width: 1664
+      pretrained_model_name_or_path: pretrained/pytorch_model.bin
+    # projector config
+    projector:
+      _target_: mllm_npu.models.multimodal_projector.attention_resampler.AttentionResampler
+      grid_size: 8
+      embed_dim: 5120
+      num_heads: 32
+      kv_dim: 4096
+    output_projector:
+      _target_: mllm_npu.models.multimodal_projector.attention_resampler.AttentionResampler
+      grid_size: 8
+      embed_dim: 4096
+      num_heads: 32
+      kv_dim: 5120
+    lm_loss_scale: 1.0
+    rec_loss_scale: 3.0
+    add_patch_pos: False
+    vit_down: True
+    mse: True
+    pretrained_model_path: pretrained/pytorch_model.bin
+  language_model:
+    # peft
+    _target_: mllm_npu.models.language_models.peft_models.get_peft_model_with_resize_embedding
+    peft_config:
+      _target_: peft.LoraConfig
+      _convert_: object
+      r: 32
+      lora_alpha: 32
+      modules_to_save:
+        - input_layernorm
+        - post_attention_layernorm
+        - norm
+      target_modules:
+        - q_proj
+        - v_proj
+        - k_proj
+        - o_proj
+        - gate_proj
+        - down_proj
+        - up_proj
+      task_type: CAUSAL_LM
+      lora_dropout: 0.05
+    # llm model
+    model:
+      _target_: mllm_npu.models.language_models.llama2.LlamaForCausalLM.from_pretrained
+      pretrained_model_name_or_path: pretrained/llama2/
+    vocab_size: 32330
+  tokenizer:
+    _target_: transformers.LlamaTokenizer.from_pretrained
+    pretrained_model_name_or_path: pretrained/cvlm_llama2_tokenizer_100img_and_224loc_addpatch
+  processor:
+    _target_: mllm_npu.data.processor.init_processor
+    processor_name: qwen_vit
+    processor_json: mllm_npu/configs/processor_configs/qwenvl_vit_processor_config.json
