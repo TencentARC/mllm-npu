@@ -41,7 +41,7 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 - [Install](#🔨-install)
 - [Demo](#💻-demo)
 - [Model](#⚙️-Model)
-- [Dataset](#🌐-dataset)
+- [Dataset](#🌐-data)
 - [Train](#🏃-train)
 - [Evaluation](#🌟-evaluation)
 
