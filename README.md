@@ -2,6 +2,8 @@
     <img src="./images/title.png" width="50%">
 </p>
 
+<h3 align="center">Training Multimodal Large Language Models on Ascend NPUs</h3>
+
 <p align="center">
     <img src="./images/bar.png">
 </p>
