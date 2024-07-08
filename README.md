@@ -187,12 +187,11 @@ If you find the work helpful, please consider citing:
     ```bibtex
     @misc{mllm_npu
         title={mllm-npu},
-        author={Li, Chen and Cheng, Tianheng and Ge, Yixiao and Ge, Yuying and Wang, Teng and Shan, Ying},
+        author={Li, Chen and Cheng, Tianheng and Ge, Yuying and Wang, Teng and Ge, Yixiao},
         howpublished={\url{https://github.com/TencentARC/mllm-npu}},
         year={2024},
     }
     ```
-
 
 - SEED-X
 
