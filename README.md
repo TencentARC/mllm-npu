@@ -39,7 +39,10 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 * **2024-07-08** 🔥 We release NPU-based multi-modal inference and pre-training code, and various ways to use SEED-X.
 
 ## 📋 TODOs
-- [ ] Modelzoo on NPU.
+
+`This project is **under active development**, please stay tuned ☕️ !`
+
+- [ ] Model zoo on NPU.
 - [ ] Multimodal benchmarks.
 
 
@@ -147,8 +150,10 @@ Specifically, we support two mainstream architectures now:
 
 * SEED-X(https://github.com/AILab-CVC/SEED-X) (`SEED`): the versatile multimodal model for comprehension and generation, extends the standard multimodal model with a output projector for generating images with the stable diffusion.
 
-| Architecture | Any Resolution | Comprehension | Generation |
-|
+    | Architecture | Any Resolution | Comprehension | Generation |
+    | :----------- | :------------: | :-----------: | :--------: |
+    | MLLM         | ✔️              | ✔️             | ✖️          |
+    | SEED-X       | ✔️              | ✔️             | ✔️          |
 
 ## 🌐 Data
 
@@ -161,7 +166,7 @@ Please refer to [dataset](./data/data.md) for more data information.
 ## 🏃 Train
 
 ### Pre-training
-You need to specify the **model config** and **data config** in the training scripts, such as `[scripts/mllm_llama3_8b_siglip_vit_pretrain.sh](./scripts/mllm_llama3_8b_siglip_vit_pretrain.sh)`.
+You need to specify the **model config** and **data config** in the training scripts, such as [`scripts/mllm_llama3_8b_siglip_vit_pretrain.sh`](./scripts/mllm_llama3_8b_siglip_vit_pretrain.sh).
 
 ```bash
 bash scripts/mllm_llama3_8b_siglip_vit_pretrain.sh
