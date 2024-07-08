@@ -1,9 +1,9 @@
-<h3 align="center">
-    <p>MLLM-NPU</p>
-</h3>
+<p align="center">
+    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/title.png">
+</p>
 
 <p align="center">
-    <img src="https://i.imgur.com/waxVImv.png">
+    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/bar.png">
 </p>
 
 <h4 align="center">
