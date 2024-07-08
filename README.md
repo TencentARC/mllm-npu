@@ -8,6 +8,14 @@
 
 #### <center>[[English]](./README.md) | [[中文]](./README_ZH.md)</center>
 
+<h4 align="center">
+    <p>
+        <b>English</b> |
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README.md">中文</a> |
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">繁體中文</a> |
+    </p>
+</h4>
+
 </br>
 
 In recent years, the widespread use of NPUs has provided more training and usage resources for LLMs, especially MLLMs.
