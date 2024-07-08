@@ -29,7 +29,7 @@ mllm:
       kv_dim: 5120
     lm_loss_scale: 1.0
     rec_loss_scale: 3.0
-    add_patch_pos: False
+    add_patch_pos: True
     vit_down: True
     mse: True
     pretrained_model_path: pretrained/pytorch_model.bin
