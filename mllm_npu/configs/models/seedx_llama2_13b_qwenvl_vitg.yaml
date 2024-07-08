@@ -13,7 +13,7 @@ mllm:
       output_dim: 4096
       patch_size: 14
       width: 1664
-      pretrained_model_name_or_path: pretrained/pytorch_model.bin
+      pretrained_model_name_or_path: ./pretrained/pytorch_model.bin
     # projector config
     projector:
       _target_: mllm_npu.models.multimodal_projector.attention_resampler.AttentionResampler
@@ -32,7 +32,7 @@ mllm:
     add_patch_pos: True
     vit_down: True
     mse: True
-    pretrained_model_path: pretrained/pytorch_model.bin
+    pretrained_model_path: ./pretrained/pytorch_model.bin
   language_model:
     # peft
     _target_: mllm_npu.models.language_models.peft_models.get_peft_model_with_resize_embedding
@@ -58,11 +58,11 @@ mllm:
     # llm model
     model:
       _target_: mllm_npu.models.language_models.llama2.LlamaForCausalLM.from_pretrained
-      pretrained_model_name_or_path: pretrained/llama2/
+      pretrained_model_name_or_path: ./pretrained/llama2/
     vocab_size: 32330
   tokenizer:
     _target_: transformers.LlamaTokenizer.from_pretrained
-    pretrained_model_name_or_path: pretrained/cvlm_llama2_tokenizer_100img_and_224loc_addpatch
+    pretrained_model_name_or_path: ./pretrained/cvlm_llama2_tokenizer_100img_and_224loc_addpatch
   processor:
     _target_: mllm_npu.data.processor.init_processor
     processor_name: qwen_vit
