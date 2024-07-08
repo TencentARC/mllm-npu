@@ -32,7 +32,7 @@ mllm:
     add_patch_pos: True
     vit_down: True
     mse: True
-    pretrained_model_path: ./pretrained/pytorch_model.bin
+    pretrained_model_name_or_path: ./pretrained/pytorch_model.bin
   language_model:
     # peft
     _target_: mllm_npu.models.language_models.peft_models.get_peft_model_with_resize_embedding

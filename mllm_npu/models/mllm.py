@@ -493,7 +493,7 @@ class SEED(GeneraliazedMultimodalModels):
                         vision_encoder,
                         projector,
                         output_projector,
-                        pretrained_model_path=None,
+                        pretrained_model_name_or_path=None,
                         **kwargs):
         model = cls(language_model=language_model,
                     vision_encoder=vision_encoder,
@@ -504,8 +504,8 @@ class SEED(GeneraliazedMultimodalModels):
         if os.environ.get('DEBUG_FLAG', 'False') == 'True':
             return model
 
-        if pretrained_model_path is not None:
-            ckpt = torch.load(pretrained_model_path, map_location='cpu')
+        if pretrained_model_name_or_path is not None:
+            ckpt = torch.load(pretrained_model_name_or_path, map_location='cpu')
             load_zero3_checkpoint(model, ckpt)
 
         return model
