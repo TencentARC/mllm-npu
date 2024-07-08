@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/title.png">
+    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/title.png" width="50%">
 </p>
 
 <p align="center">
