@@ -9,7 +9,7 @@
 <h4 align="center">
     <p>
         <a href="https://github.com/TencentARC/mllm-npu/edit/main/README.md">English</a> |
-        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">中文</a> |
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">中文</a> 
     </p>
 </h4>
 
@@ -74,8 +74,8 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
   </br>
 
   ```bash
-  git clone -
-  cd -
+  git clone https://github.com/TencentARC/mllm-npu.git
+  cd mllm-npu
   pip install -r requirements.txt
   ```
 
