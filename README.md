@@ -48,12 +48,12 @@ This project is **under active development**, please stay tuned ☕️!
 
 ## 📃 Contents
 
-- [Install](#🔨-install)
-- [Demo](#💻-demo)
+- [Install](#🔨-Install)
+- [Demo](#💻-Demo)
 - [Model](#⚙️-Model)
-- [Dataset](#🌐-data)
-- [Train](#🏃-train)
-- [Evaluation](#🌟-evaluation)
+- [Data](#🌐-Data)
+- [Train](#🏃-Train)
+- [Bench Evaluation](#🌟-Bench Evaluation)
 
 
 
