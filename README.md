@@ -46,16 +46,6 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 - [ ] Multimodal benchmarks.
 
 
-## 📃 Contents
-
-- [Install](#🔨-Install)
-- [Demo](#💻-Demo)
-- [Model](#⚙️-Model)
-- [Data](#🌐-Data)
-- [Train](#🏃-Train)
-- [Bench Evaluation](#🌟-Bench Evaluation)
-
-
 
 ## 🔨 Install
 
@@ -160,8 +150,6 @@ Specifically, we support two mainstream architectures now:
 You can prepare your own data to pre-train or fine-tune your model. Specifically, we provide four different tasks and corresponding formats (please refer to the [examples](./data/)). In order to use the data more efficiently, we use [webdataset](https://webdataset.github.io/webdataset/) to organize the data. Besides, please refer to [data.yaml](./seed_npu/configs/dataset/pretrain_data.yaml) for the index of the data. You can adjust the data sampling rate and other settings by setting it in this file.
 
 Please refer to [dataset](./data/data.md) for more data information.
-
-</br>
 
 ## 🏃 Train
 

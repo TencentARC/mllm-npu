@@ -55,7 +55,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='img2txt inference demo')
 
-    parser.add_argument('--config_path', type=str, default='./seed_npu/configs/models/mllm_llama2_13b_qwenvl_vit.yaml')
+    parser.add_argument('--config_path', type=str, default='./mllm_npu/configs/models/mllm_llama2_13b_qwenvl_vitg.yaml')
     parser.add_argument('--image_path', type=str, default='./images/img-1.png')
     parser.add_argument('--input_text', type=str, default='What is unusual about this image?')
 
