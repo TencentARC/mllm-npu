@@ -13,7 +13,7 @@ mllm:
       output_dim: 4096
       patch_size: 14
       width: 1664
-      pretrained_model_name_or_path: ./pretrained/pytorch_model.bin
+#      pretrained_model_name_or_path: ./pretrained/pytorch_model.bin
     # projector config
     projector:
       _target_: mllm_npu.models.multimodal_projector.attention_resampler.AttentionResampler
