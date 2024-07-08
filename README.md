@@ -1,8 +1,19 @@
-# MLLM-NPU
+<p align="center">
+    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/title.png" width="50%">
+</p>
 
 <p align="center">
-    <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
+    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/bar.png">
 </p>
+
+<h4 align="center">
+    <p>
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README.md">English</a> |
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">中文</a> 
+    </p>
+</h4>
+
+</br>
 
 In recent years, the widespread use of NPUs has provided more training and usage resources for LLMs, especially MLLMs.
 However, the current use of NPUs still has more or less adaptation issues.
@@ -37,7 +48,7 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 - [Install](#🔨-install)
 - [Demo](#💻-demo)
 - [Model](#⚙️-Model)
-- [Dataset](#🌐-dataset)
+- [Dataset](#🌐-data)
 - [Train](#🏃-train)
 - [Evaluation](#🌟-evaluation)
 
@@ -67,8 +78,8 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
   - Clone the repo and install dependent packages
 
   ```bash
-  git clone -
-  cd -
+  git clone https://github.com/TencentARC/mllm-npu.git
+  cd mllm-npu
   pip install -r requirements.txt
   ```
 
@@ -139,10 +150,13 @@ Specifically, we support two mainstream architectures now:
 | Architecture | Any Resolution | Comprehension | Generation |
 |
 
-## 🌐 Dataset
+## 🌐 Data
 
 You can prepare your own data to pre-train or fine-tune your model. Specifically, we provide four different tasks and corresponding formats (please refer to the [examples](./data/)). In order to use the data more efficiently, we use [webdataset](https://webdataset.github.io/webdataset/) to organize the data. Besides, please refer to [data.yaml](./seed_npu/configs/dataset/pretrain_data.yaml) for the index of the data. You can adjust the data sampling rate and other settings by setting it in this file.
 
+Please refer to [dataset](./data/data.md) for more data information.
+
+</br>
 
 ## 🏃 Train
 
