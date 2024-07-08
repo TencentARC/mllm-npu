@@ -1,5 +1,5 @@
 <h3 align="center">
-    <size="12">
+    <size="17">
         <p>MLLM-NPU</p>
     </font> 
 </h3>
