@@ -1,7 +1,7 @@
 <center><font size=7> MLLM-NPU </font></center>
 
 <p align="center">
-    <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
+    <img src="https://i.imgur.com/waxVImv.png">
 </p>
 
 #### <center>[[English]](./README.md) | [[中文]](./README_ZH.md)</center>
