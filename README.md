@@ -11,8 +11,8 @@
 <h4 align="center">
     <p>
         <b>English</b> |
-        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README.md">中文</a> |
-        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">繁體中文</a> |
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README.md">English</a> |
+        <a href="https://github.com/TencentARC/mllm-npu/edit/main/README_ZH.md">中文</a> |
     </p>
 </h4>
 
