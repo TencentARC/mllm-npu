@@ -1,9 +1,9 @@
 <p align="center">
-    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/title.png" width="50%">
+    <img src="./images/title.png" width="50%">
 </p>
 
 <p align="center">
-    <img src="https://github.com/TencentARC/mllm-npu/blob/main/images/bar.png">
+    <img src="./images/bar.png">
 </p>
 
 <h4 align="center">
