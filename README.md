@@ -1,8 +1,6 @@
-<!-- 
-<center> 
+<div style="text-align: center;">
 MLLM-NPU 
-</center> 
--->
+</div>
 
 <p align="center">
     <img src="https://i.imgur.com/waxVImv.png">
