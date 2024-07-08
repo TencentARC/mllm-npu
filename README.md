@@ -45,12 +45,12 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 
 ## 📃 Contents
 
-- [Install](#🔨-install)
-- [Demo](#💻-demo)
+- [Install](#🔨-Install)
+- [Demo](#💻-Demo)
 - [Model](#⚙️-Model)
-- [Dataset](#🌐-data)
-- [Train](#🏃-train)
-- [Evaluation](#🌟-evaluation)
+- [Data](#🌐-Data)
+- [Train](#🏃-Train)
+- [Bench Evaluation](#🌟-Bench Evaluation)
 
 
 
