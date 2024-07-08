@@ -1,12 +1,8 @@
-<center><font size=7> MLLM-NPU </font></center>
+# MLLM-NPU
 
 <p align="center">
     <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
 </p>
-
-#### <center>[[English]](./README.md) | [[中文]](./README_ZH.md)</center>
-
-</br>
 
 In recent years, the widespread use of NPUs has provided more training and usage resources for LLMs, especially MLLMs.
 However, the current use of NPUs still has more or less adaptation issues.
@@ -14,20 +10,27 @@ Therefore, we provide a framework that can flexibly select different visual enco
 
 For example, we give an implementation of a high-performance MLLM (i.e., SEED-X) using this framework. Of course, you can also choose different modules in this framework to build your own MLLM.
 
-- [SEED-X](https://github.com/AILab-CVC/SEED-X/tree/main), a unified and versatile foundation model, which can serve as various multi-modal AI assistants **in the real world** after different instruction tuning, capable of responding to a variety of user needs through unifying **multi-granularity comprehension and generation**.
+- MLLM: the standard multimodal large language models for multimodal comprehension.
 
-</br>
+- [SEED-X](https://github.com/AILab-CVC/SEED-X/tree/main): a unified and versatile foundation model which is capable of responding to a variety of user needs through unifying **multi-granularity comprehension and generation**.
+
+
+## 🌟 Highlights
+
+* **modular design**: this project is flexible and it's easy to change the large language models or vision encoders with configs.
+
+* **training recipe** this project provides the complete code for pre-training or superivsed finetuning the multimodal large language models on (Ascend) NPUs.
+
+* ****
 
 ## 📢 News
-**2024-07-08** 🔥 We release NPU-based multi-modal inference and pre-training code, and various ways to use SEED-X.
 
-</br>
+* **2024-07-08** 🔥 We release NPU-based multi-modal inference and pre-training code, and various ways to use SEED-X.
 
 ## 📋 TODOs
-- [ ] Release more MLLMs on NPU.
+- [ ] Modelzoo on NPU.
 - [ ] Multimodal benchmarks.
 
-</br>
 
 ## 📃 Contents
 
@@ -38,7 +41,7 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 - [Train](#🏃-train)
 - [Evaluation](#🌟-evaluation)
 
-</br>
+
 
 ## 🔨 Install
 
@@ -48,7 +51,6 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
   - ASCEND NPU (Recommend to use [910B]()) + [CANN](https://www.hiascend.com/en/software/cann)
     - CANN version
     
-    </br>
 
     ```bash
     > cat /usr/local/Ascend/ascend-toolkit/latest/x86_64-linux/ascend_toolkit_install.info 
@@ -64,15 +66,11 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 - Installation
   - Clone the repo and install dependent packages
 
-  </br>
-
   ```bash
   git clone -
   cd -
   pip install -r requirements.txt
   ```
-
-</br>
 
 ## 💻 Demo
 
@@ -121,49 +119,71 @@ To launch a Gradio demo locally, please run the following commands one by one. I
     ```
 
 
-</br>
-
 ## ⚙️ Model
 
-We mainly adopt the `GeneraliazedMultimodalModels` in `[mllm.py](./mllm_npu/models/mllm.py)` as the overall architecture, which contains three basic modules:
+We mainly adopt the `GeneraliazedMultimodalModels` in `[mllm.py](./mllm_npu/models/mllm.py)` as the general architecture of multimodal large language models, such as LLaVA, which contains three basic modules:
 - (1) a **language model**, e.g., LLaMA-2.
 - (2) a **projector** to project image features into language embeddings.
 - (3) a **vision encoder**, e.g., ViT.
 
-
 The MLLM is built according to the model config with `hydra.utils.instantiate`, and you can find some samples in [models](./mllm_npu/configs/models).
 
-The [SEED-X](https://github.com/AILab-CVC/SEED-X) models additionaly contains an **output projector** to obtain the image embeddings for generating images.
+<div align="center"><img src="images/mllm.png"></div>
 
+Specifically, we support two mainstream architectures now:
+
+* standard multimodal models (`GeneraliazedMultimodalModels`): aim for multimodal comprehension, containing a vision encoder, a vision-language projector, and a Large Lagnguage Model.
+
+* SEED-X(https://github.com/AILab-CVC/SEED-X) (`SEED`): the versatile multimodal model for comprehension and generation, extends the standard multimodal model with a output projector for generating images with the stable diffusion.
+
+| Architecture | Any Resolution | Comprehension | Generation |
+|
 
 ## 🌐 Dataset
 
 You can prepare your own data to pre-train or fine-tune your model. Specifically, we provide four different tasks and corresponding formats (please refer to the [examples](./data/)). In order to use the data more efficiently, we use [webdataset](https://webdataset.github.io/webdataset/) to organize the data. Besides, please refer to [data.yaml](./seed_npu/configs/dataset/pretrain_data.yaml) for the index of the data. You can adjust the data sampling rate and other settings by setting it in this file.
 
-</br>
 
 ## 🏃 Train
 
+### Pre-training
 You need to specify the **model config** and **data config** in the training scripts, such as `[scripts/mllm_llama3_8b_siglip_vit_pretrain.sh](./scripts/mllm_llama3_8b_siglip_vit_pretrain.sh)`.
 
 ```bash
 bash scripts/mllm_llama3_8b_siglip_vit_pretrain.sh
 ```
 
-</br>
+### Supervised Finetuning / Instruction Tuning
 
-## 🌟 Evaluation
+For supervised finetuning,  you can keep most settings unchanged and:
+
+1. specify the initial weights of SFT through the "pretrained_model_name_path" in the model configuration file.  
+2. adjust the SFT data and its instruction format.  
+3. follow the pre-training script for the rest.
+
+## 🌟 Benchmark Evaluation
 coming soon
 
-</br>
 
 ## 💡 Citation
 
 If you find the work helpful, please consider citing:
 
+- mllm-npu
+
+    ```bibtex
+    @misc{mllm_npu
+        title={mllm-npu},
+        author={Li, Chen and Cheng, Tianheng and Ge, Yixiao and Ge, Yuying and Wang, Teng and Shan, Ying},
+        howpublished={\url{https://github.com/TencentARC/mllm-npu}},
+        year={2024},
+    }
+    ```
+
+
 - SEED-X
 
-    ```bash
+    ```bibtex
     @article{ge2024seed,
         title={SEED-X: Multimodal Models with Unified Multi-granularity Comprehension and Generation},
         author={Ge, Yuying and Zhao, Sijie and Zhu, Jinguo and Ge, Yixiao and Yi, Kun and Song, Lin and Li, Chen and Ding, Xiaohan and Shan, Ying},
@@ -172,11 +192,9 @@ If you find the work helpful, please consider citing:
     }
     ```
 
-</br>
-
 ## 🔎 License
 This project is under the Apache-2.0 License. For models built with LLaMA or Qwen models, please also adhere to their licenses!
-</br>
+
 
 ## 👍 Acknowledgement
 
