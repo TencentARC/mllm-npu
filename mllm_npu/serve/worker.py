@@ -258,6 +258,7 @@ class ModelWorker:
 
                 output_text = re.sub('<[^>]*>', '', output['text'])
                 output_text = re.sub(r'\[(.*)\]', '', output_text)
+                output_text = output_text.split("\n")[0]
 
                 queue.put(output_text)
 
