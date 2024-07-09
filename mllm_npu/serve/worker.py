@@ -163,7 +163,7 @@ class ModelWorker:
 
     @torch.inference_mode()
     def generate(self, params):
-        tokenizer, image_transform, visual_encoder, mllm_model = self.tokenizer, self.image_transform, self.visual_encoder, self.mllm_model
+        tokenizer, image_transform, mllm_model = self.tokenizer, self.image_transform, self.mllm_model
         adapter = self.adapter
 
         BOI_TOKEN = '<img>'
