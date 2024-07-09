@@ -4,7 +4,7 @@ mllm:
     freeze_vision_encoder: True
     # ViT config
     vision_encoder:
-      _target_: mllm_npu.models.multimodal_encoder.qwenvl_vit.VisionTransformerWithAttnPool.from_pretrained
+      _target_: mllm_npu.models.multimodal_encoder.qwenvl_vit.VisionTransformerWithAttnPool
       heads: 16
       image_size: 448
       image_start_id": 151857
@@ -13,7 +13,6 @@ mllm:
       output_dim: 4096
       patch_size: 14
       width: 1664
-#      pretrained_model_name_or_path: ./pretrained/pytorch_model.bin
     # projector config
     projector:
       _target_: mllm_npu.models.multimodal_projector.attention_resampler.AttentionResampler
@@ -58,7 +57,7 @@ mllm:
     # llm model
     model:
       _target_: mllm_npu.models.language_models.llama2.LlamaForCausalLM.from_pretrained
-      pretrained_model_name_or_path: ./pretrained/llama2/
+      pretrained_model_name_or_path: ./pretrained/llama2
     vocab_size: 32330
   tokenizer:
     _target_: transformers.LlamaTokenizer.from_pretrained
