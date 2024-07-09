@@ -81,7 +81,7 @@ class ModelWorker:
         logger.info(f"Init llm done")
 
         mllm_model_cfg = model_cfg.mllm_model
-        self.mllm_model = hydra.utils.instantiate(mllm_model_cfg, llm=self.llm)
+        self.mllm_model = hydra.utils.instantiate(mllm_model_cfg, language_model=self.llm)
         self.mllm_model.eval().to(self.device, dtype=self.dtype)
         logger.info(f"Init mllm model done")
 
