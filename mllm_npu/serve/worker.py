@@ -64,6 +64,8 @@ class ModelWorker:
 
         model_cfg = OmegaConf.load(self.config["mllm_model"]).mllm
 
+        logger.info(f"model_cfg: {model_cfg}")
+
         tokenizer_cfg = OmegaConf.load(model_cfg.tokenizer)
         self.tokenizer = hydra.utils.instantiate(tokenizer_cfg)
 
