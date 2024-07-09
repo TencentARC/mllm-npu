@@ -66,21 +66,21 @@ class ModelWorker:
 
         logger.info(f"model_cfg: {model_cfg}")
 
-        tokenizer_cfg = OmegaConf.load(model_cfg.tokenizer)
-        self.tokenizer = hydra.utils.instantiate(tokenizer_cfg)
+        tokenizer_cfg = model_cfg.tokenizer
+        self.tokenizer = hydra.utils.instantiate(tokenizer_cfg, add_prefix_space=False)
 
-        image_transform_cfg = OmegaConf.load(model_cfg.processor)
+        image_transform_cfg = model_cfg.processor
         image_transform_cfg["_target_"] = "mllm_npu.data.processor.image_processing_clip.CLIPImageProcessor"
         self.image_transform = hydra.utils.instantiate(image_transform_cfg)
 
         self.dtype = torch.float16
         self.dtype_str = 'fp16'
 
-        language_model_cfg = OmegaConf.load(model_cfg.language_model)
+        language_model_cfg = model_cfg.language_model
         self.llm = hydra.utils.instantiate(language_model_cfg, torch_dtype=self.dtype_str)
         logger.info(f"Init llm done")
 
-        mllm_model_cfg = OmegaConf.load(model_cfg.mllm_model)
+        mllm_model_cfg = model_cfg.mllm_model
         self.mllm_model = hydra.utils.instantiate(mllm_model_cfg, llm=self.llm)
         self.mllm_model.eval().to(self.device, dtype=self.dtype)
         logger.info(f"Init mllm model done")
