@@ -7,10 +7,12 @@ import json
 from PIL import Image
 
 title = ("""
-# SEED-X4NPU
+# MLLM-NPU (SEEDX)
+
+[[Github]](https://github.com/TencentARC/mllm-npu/tree/main)
 [[Paper]](https://arxiv.org/abs/2404.14396)
 
-Demo of the foundation model SEED-X. 
+Demo of the MLLM-NPU. 
 
 * SEED-X was trained with English-only data. It may process with other languages due to the inherent capabilities from LLaMA, but might not stable.
 """)
@@ -152,7 +154,7 @@ if __name__ == '__main__':
                     submit_btn = gr.Button("Submit")
 
             with gr.Column(scale=7):
-                chatbot = gr.Chatbot(elem_id='chatbot', label="SEED-X4NPU", height=700)
+                chatbot = gr.Chatbot(elem_id='chatbot', label="MLLM-NPU", height=700)
                 with gr.Row():
                     upvote_btn = gr.Button(value="👍  Upvote", interactive=False)
                     downvote_btn = gr.Button(value="👎  Downvote", interactive=False)
