@@ -248,7 +248,7 @@ class ModelWorker:
                     output = mllm_model.generate(
                         tokenizer=tokenizer,
                         input_ids=input_ids,
-                        image_embeds=image_tensor,
+                        pixel_values=image_tensor,
                         embeds_cmp_mask=embeds_cmp_mask,
                         patch_positions=patch_positions,
                         ids_cmp_mask=ids_cmp_mask,
@@ -268,7 +268,7 @@ class ModelWorker:
                     kwargs=dict(
                         tokenizer=tokenizer,
                         input_ids=input_ids,
-                        image_embeds=image_tensor,
+                        image_tensor=image_tensor,
                         embeds_cmp_mask=embeds_cmp_mask,
                         patch_positions=patch_position,
                         ids_cmp_mask=ids_cmp_mask,
