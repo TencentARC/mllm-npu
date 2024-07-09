@@ -1,0 +1,18 @@
+_target_: mllm_npu.models.generation.adapter_modules.SDXLAdapter.from_pretrained
+
+resampler:
+  _target_: mllm_npu.models.generation.resampler.ResamplerXLV2
+  dim: 1024
+  depth: 4
+  dim_head: 64
+  heads: 16
+  num_queries: 64
+  embedding_dim: 4096
+  output1_dim: 768
+  output2_dim: 1280
+  ff_mult: 4
+  normalize: False
+
+vit_down: True
+
+pretrained_model_path: ./pretrained/detokenizer/pytorch_model.bin

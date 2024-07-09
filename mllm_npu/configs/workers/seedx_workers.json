@@ -1,0 +1,6 @@
+{
+  "mllm_model": "./mllm_npu/configs/models/seedx_llama2_13b_qwenvl_vitg.yaml",
+  "diffusion_model": "./pretrained/stable-diffusion-xl-base-1.0/",
+  "adapter": "./mllm_npu/configs/generation/sd_xl_qwenvl_vit_resampler.yaml",
+  "discrete_model": "./mllm_npu/configs/generation/discrete_identity.yaml"
+}
