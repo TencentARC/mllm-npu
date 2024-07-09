@@ -9,6 +9,12 @@ server_error_msg = "**NETWORK ERROR DUE TO HIGH TRAFFIC. PLEASE REGENERATE OR RE
 moderation_msg = "YOUR INPUT VIOLATES OUR CONTENT MODERATION GUIDELINES. PLEASE TRY AGAIN."
 
 
+def pretty_print_semaphore(semaphore):
+    if semaphore is None:
+        return "None"
+    return f"Semaphore(value={semaphore._value}, locked={semaphore.locked()})"
+
+
 class StreamToLogger(object):
     """
     Fake file-like stream object that redirects writes to a logger instance.

@@ -18,7 +18,7 @@ import numpy as np
 import requests
 import uvicorn
 
-from .serve_utils import build_logger, server_error_msg
+from mllm_npu.serve.serve_utils import build_logger, server_error_msg
 
 
 CONTROLLER_HEART_BEAT_EXPIRATION = 30

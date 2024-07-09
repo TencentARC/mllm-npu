@@ -24,7 +24,8 @@ from fastapi.responses import StreamingResponse
 from functools import partial
 from threading import Thread
 from diffusers import AutoencoderKL, DDPMScheduler, UNet2DConditionModel, EulerDiscreteScheduler
-from mllm_npu.utils import build_logger, server_error_msg, pretty_print_semaphore, process_anyres_image
+from mllm_npu.serve.serve_utils import build_logger, server_error_msg, pretty_print_semaphore
+from mllm_npu.data.utils import process_anyres_image
 
 import torch_npu
 from torch_npu.contrib import transfer_to_npu
