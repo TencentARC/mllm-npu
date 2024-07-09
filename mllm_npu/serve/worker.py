@@ -273,7 +273,7 @@ class ModelWorker:
                         patch_positions=patch_position,
                         ids_cmp_mask=ids_cmp_mask,
                         max_new_tokens=512,
-                        num_img_gen_tokens=num_img_out_tokens,
+                        num_img_out_tokens=num_img_out_tokens,
                         queue=q
                     )
                 )
