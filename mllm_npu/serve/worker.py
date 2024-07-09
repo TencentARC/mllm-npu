@@ -100,7 +100,7 @@ class ModelWorker:
         self.adapter.init_pipe(
             vae=self.vae,
             scheduler=self.noise_scheduler,
-            visual_encoder=self.mllm_model.visual_encoder,
+            visual_encoder=self.mllm_model.vision_encoder,
             image_transform=self.image_transform,
             discrete_model=self.discrete_model,
             dtype=self.dtype,
