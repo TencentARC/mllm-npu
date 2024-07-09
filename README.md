@@ -99,19 +99,19 @@ To launch a Gradio demo locally, please run the following commands one by one. I
 1. Launch a contoller
 
     ```bash
-    python ./seedx/serve/controller.py --host 0.0.0.0 --port 10000
+    python mllm_npu/serve/controller.py --host 0.0.0.0 --port 10000
     ```
 
 2. Launch a model worker
 
     ```bash
-    python ./seedx/serve/model_worker.py --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000 --config ./demo/worker_config.json
+    python mllm_npu/serve/worker.py --host 0.0.0.0 --controller http://localhost:10000 --port 40000 --worker http://localhost:40000
     ```
 
 3. Launch a gradio web app
 
     ```bash
-    python ./seedx/serve/gradio_app.py
+    python mllm_npu/serve/gradio_app.py
     ```
 
 4. You can also use this service through API, see [demo](./demo/demo.ipynb) for the format.
@@ -123,7 +123,14 @@ To launch a Gradio demo locally, please run the following commands one by one. I
         "image_gen": False or True
     }
     ```
+   
+<p align="center">
+    <img src="./images/gradio_inference.png" width="70%">
+</p>
 
+<p align="center">
+    <img src="./images/gradio_generation.png" width="70%">
+</p>
 
 ## ⚙️ Model
 
