@@ -134,7 +134,7 @@ To launch a Gradio demo locally, please run the following commands one by one. I
 
 ## ⚙️ Model
 
-We mainly adopt the `GeneraliazedMultimodalModels` in `[mllm.py](./mllm_npu/models/mllm.py)` as the general architecture of multimodal large language models, such as LLaVA, which contains three basic modules:
+We mainly adopt the `GeneraliazedMultimodalModels` in [mllm.py](./mllm_npu/models/mllm.py) as the general architecture of multimodal large language models, such as LLaVA, which contains three basic modules:
 - (1) a **language model**, e.g., LLaMA-2.
 - (2) a **projector** to project image features into language embeddings.
 - (3) a **vision encoder**, e.g., ViT.
@@ -147,7 +147,7 @@ Specifically, we support two mainstream architectures now:
 
 * standard multimodal models (`GeneraliazedMultimodalModels`): aim for multimodal comprehension, containing a vision encoder, a vision-language projector, and a Large Lagnguage Model.
 
-* SEED-X(https://github.com/AILab-CVC/SEED-X) (`SEED`): the versatile multimodal model for comprehension and generation, extends the standard multimodal model with a output projector for generating images with the stable diffusion.
+* [SEED-X](https://github.com/AILab-CVC/SEED-X) (`SEED`): the versatile multimodal model for comprehension and generation, extends the standard multimodal model with a output projector for generating images with the stable diffusion.
 
     | Architecture | Any Resolution | Comprehension | Generation |
     | :----------- | :------------: | :-----------: | :--------: |
