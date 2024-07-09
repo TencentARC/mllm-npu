@@ -1,6 +1,9 @@
 # Weights
 
-You can organize the model weights in the following way, where most of the weights can be obtained in [weight](), and other components can also be obtained in the corresponding huggingface repo.
+You can organize the model weights in the following way, where most of the weights can be obtained in [weight](https://huggingface.co/TencentARC/mllm-npu-llama2-qwenvl-vit/tree/main), and other components can also be obtained in the corresponding huggingface repo.
+
+- [llama2](https://huggingface.co/meta-llama/Llama-2-13b-chat-hf)
+- [stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
 
 ```shell
 pretrained/
