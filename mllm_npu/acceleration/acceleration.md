@@ -2,7 +2,7 @@
 
 ### Computational cost comparison
 
-This scripts are mainly used to use flash-attn and xformers on NPUs and test them.
+This scripts are mainly used to replace flash-attn and xformers on NPUs and test them.
 
 | device | function | avg. time cost |
 |-------|-------|-------|
