@@ -32,7 +32,9 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 
 * **modular design**: this project is flexible and it's easy to change the large language models or vision encoders with configs.
 
-* **training recipe** this project provides the complete code for pre-training or superivsed finetuning the multimodal large language models on (Ascend) NPUs.
+* **training recipe**: this project provides the complete code for pre-training or superivsed finetuning the multimodal large language models on (Ascend) NPUs.
+
+* **acceleration program**: this project provides a GPU-based acceleration component replacement solution.
 
 * ****
 
@@ -183,6 +185,12 @@ For supervised finetuning,  you can keep most settings unchanged and:
 
 ## 🌟 Benchmark Evaluation
 coming soon
+
+
+## 🚅 Acceleration
+
+On the GPU, there are some common acceleration components that can significantly improve the model calculation speed, such as [flash-attn](https://github.com/Dao-AILab/flash-attention) and [xformers](https://github.com/facebookresearch/xformers). 
+Since there is currently no direct implementation on the NPU, we now provide some optional acceleration implementations, please see [acceleration](./mllm_npu/acceleration/acceleration.md) for details.
 
 
 ## 💡 Citation
