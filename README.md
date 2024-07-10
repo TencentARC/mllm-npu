@@ -34,7 +34,7 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 
 * **training recipe**: this project provides the complete code for pre-training or superivsed finetuning the multimodal large language models on (Ascend) NPUs.
 
-* **acceleration program**: this project provides a GPU-based acceleration component replacement solution.
+* **acceleration**: this project provides an existing GPU-accelerated component replacement scheme for NPUs.
 
 * ****
 
