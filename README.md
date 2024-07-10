@@ -127,11 +127,11 @@ To launch a Gradio demo locally, please run the following commands one by one. I
     ```
    
 <p align="center">
-    <img src="./images/gradio_inference.png" width="70%">
+    <img src="./images/gradio_inference.png" width="90%">
 </p>
 
 <p align="center">
-    <img src="./images/gradio_generation.png" width="70%">
+    <img src="./images/gradio_generation.png" width="90%">
 </p>
 
 ## ⚙️ Model
