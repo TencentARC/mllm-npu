@@ -38,7 +38,7 @@ def main(args):
     mllm_model.eval().to(device, dtype=dtype)
     print("init mllm done")
 
-    mmlu_eval(mllm_model, tokenizer, args.data_path)
+    mmlu_eval(mllm_model, tokenizer, args.data_path, device)
 
 
 
