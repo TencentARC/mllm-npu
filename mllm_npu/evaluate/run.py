@@ -1,8 +1,11 @@
 import hydra
 import torch
 import re
+import os
+import time
 import argparse
 import numpy as np
+import pandas as pd
 from omegaconf import OmegaConf
 from PIL import Image
 from mllm_npu.models.mllm import SEED
@@ -10,6 +13,8 @@ from mllm_npu.data.utils import process_anyres_image
 
 import torch_npu
 from torch_npu.contrib import transfer_to_npu
+
+from mllm_npu.evaluate.eval_data.mmlu import mmlu_eval
 
 
 def main(args):
@@ -33,7 +38,7 @@ def main(args):
     mllm_model.eval().to(device, dtype=dtype)
     print("init mllm done")
 
-
+    mmlu_eval(mllm_model, tokenizer, args.config_path)
 
 
 
