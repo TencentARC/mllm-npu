@@ -56,8 +56,8 @@ def eval(model, tokenizer, subject, dev_df, test_df, device):
                 max_new_tokens=10
             )
 
-        print(output['text'][0], label)
-        cor = output['text'][0] == label
+        print(output['text'][1], label)
+        cor = output['text'][1] == label
         cors.append(cor)
 
     acc = np.mean(cors)
