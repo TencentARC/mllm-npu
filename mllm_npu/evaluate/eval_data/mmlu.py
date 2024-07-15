@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import torch
+import numpy as np
 
 
 choices = ["A", "B", "C", "D"]
@@ -50,19 +51,27 @@ def eval(model, tokenizer, subject, dev_df, test_df, device):
 
         print("label:", [label])
 
-        conversation = [
-            {'role': 'system', 'content': 'You are a helpful assistant.'},
-            {'role': 'user', 'content': prompt}
-        ]
+        input_ids = tokenizer.encode(prompt, add_special_tokens=False)
+        input_ids = [tokenizer.bos_token_id] + input_ids
+        input_ids = torch.tensor(input_ids).to(device, dtype=torch.long)
+        input_ids = input_ids.unsqueeze(0)
 
-        # tokenizer.pad_token = tokenizer.eos_token
-        # model_inputs = tokenizer.apply_chat_template(conversation, return_tensors="pt").to(device)
-        # with torch.no_grad():
-        #     output = model.generate(
-        #         tokenizer=tokenizer,
-        #         input_ids=model_inputs,
-        #         max_new_tokens=512
-        #     )
+        with torch.no_grad():
+            output = model.generate(
+                tokenizer=tokenizer,
+                input_ids=input_ids,
+                max_new_tokens=10
+            )
+
+        cor = output['text'][0] == label
+        cors.append(cor)
+
+    acc = np.mean(cors)
+    cors = np.array(cors)
+
+    print("Average accuracy {:.3f} - {}".format(acc, subject))
+
+    return cors, acc
 
 
 def mmlu_eval(model, tokenizer, data_path, device):
@@ -73,4 +82,4 @@ def mmlu_eval(model, tokenizer, data_path, device):
         dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + "_dev.csv"), header=None)[:k]
         test_df = pd.read_csv(os.path.join(data_path, "test", subject + "_test.csv"), header=None)
 
-        eval(model, tokenizer, subject, dev_df, test_df, device)
+        cors, acc = eval(model, tokenizer, subject, dev_df, test_df, device)

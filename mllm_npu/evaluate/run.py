@@ -30,7 +30,6 @@ def main(args):
 
     tokenizer_cfg = model_cfg.tokenizer
     tokenizer = hydra.utils.instantiate(tokenizer_cfg, add_prefix_space=False)
-    tokenizer.pad_token = tokenizer.eos_token
     print("init tokenizer done")
 
     mllm_model_cfg = model_cfg.mllm_model
