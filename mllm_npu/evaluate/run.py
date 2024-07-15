@@ -46,7 +46,7 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='evaluate mllm on npu')
 
-    parser.add_argument('--config_path', type=str, default='../mllm_npu/configs/models/seedx_llama2_13b_qwenvl_vitg.yaml')
+    parser.add_argument('--config_path', type=str, default='./mllm_npu/configs/models/seedx_llama2_13b_qwenvl_vitg.yaml')
     parser.add_argument('--dataset', type=str, default='mmlu')
 
     args = parser.parse_args()
