@@ -31,7 +31,7 @@ def gen_prompt(train_df, subject, k=-1):
     return prompt
 
 
-def eval(subject, dev_df, test_df):
+def eval(model, tokenizer, subject, dev_df, test_df):
     cors = []
     all_probs = []
     answers = choices[:test_df.shape[1] - 2]
@@ -57,4 +57,4 @@ def mmlu_eval(model, tokenizer, data_path):
         dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + "_dev.csv"), header=None)[:k]
         test_df = pd.read_csv(os.path.join(data_path, "test", subject + "_test.csv"), header=None)
 
-        eval(subject, dev_df, test_df)
+        eval(model, tokenizer, subject, dev_df, test_df)

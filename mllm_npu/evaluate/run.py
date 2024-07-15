@@ -38,7 +38,8 @@ def main(args):
     mllm_model.eval().to(device, dtype=dtype)
     print("init mllm done")
 
-    mmlu_eval(mllm_model, tokenizer, args.config_path)
+    mmlu_eval(mllm_model, tokenizer, args.data_path)
+
 
 
 
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='evaluate mllm on npu')
 
     parser.add_argument('--config_path', type=str, default='./mllm_npu/configs/models/seedx_llama2_13b_qwenvl_vitg.yaml')
-    parser.add_argument('--dataset', type=str, default='mmlu')
+    parser.add_argument('--data_path', type=str, default='./mllm_npu/evaluate/eval_data/mmlu/')
 
     args = parser.parse_args()
 
