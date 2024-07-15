@@ -36,20 +36,13 @@ def gen_prompt(train_df, subject, k=-1):
 
 def eval(model, tokenizer, subject, dev_df, test_df, device):
     cors = []
-    all_probs = []
-    answers = choices[:test_df.shape[1] - 2]
 
     for i in range(test_df.shape[0]):
         k = 5
         prompt_end = format_example(test_df, i, include_answer=False)
         train_prompt = gen_prompt(dev_df, subject, k)
         prompt = train_prompt + prompt_end
-
-        print("prompt:", [prompt])
-
         label = test_df.iloc[i, test_df.shape[1] - 1]
-
-        print("label:", [label])
 
         input_ids = tokenizer.encode(prompt, add_special_tokens=False)
         input_ids = [tokenizer.bos_token_id] + input_ids
