@@ -26,7 +26,7 @@ def format_subject(subject):
 
 
 def gen_prompt(train_df, subject, k=-1):
-    prompt = "The following are multiple choice questions (with answers) about {}.\n\n".format(format_subject(subject))
+    prompt = "以下是关于的多项选择题(含答案) {}.\n\n".format(format_subject(subject))
     if k == -1:
         k = train_df.shape[0]
     for i in range(k):
@@ -67,12 +67,12 @@ def eval(model, tokenizer, subject, dev_df, test_df, device):
     return cors, acc
 
 
-def mmlu_eval(model, tokenizer, data_path, device):
+def cmmlu_eval(model, tokenizer, data_path, device):
     k = 5
-    subjects = sorted([f.split("_test.csv")[0] for f in os.listdir(os.path.join(data_path, "test")) if "_test.csv" in f])
+    subjects = sorted([f.split(".csv")[0] for f in os.listdir(os.path.join(data_path, "test")) if ".csv" in f])
 
     for subject in subjects:
-        dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + "_dev.csv"), header=None)[:k]
-        test_df = pd.read_csv(os.path.join(data_path, "test", subject + "_test.csv"), header=None)
+        dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + ".csv"), header=None)[:k]
+        test_df = pd.read_csv(os.path.join(data_path, "test", subject + ".csv"), header=None)
 
         cors, acc = eval(model, tokenizer, subject, dev_df, test_df, device)
