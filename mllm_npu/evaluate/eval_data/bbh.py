@@ -5,9 +5,9 @@ import numpy as np
 
 
 def format_example(data, idx, include_answer=True):
-    prompt = "Question: {}\nAnswer:".format(data[idx]["input"])
+    prompt = "Question: {}\nAnswer:".format(data["examples"][idx]["input"])
     if include_answer:
-        prompt += " {}\n\n".format(data[idx]["target"])
+        prompt += " {}\n\n".format(data["examples"][idx]["target"])
     return prompt
 
 
