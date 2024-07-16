@@ -51,7 +51,7 @@ def eval(model, tokenizer, subject, test_data, device):
 
         # print("pred:", output['text'][:len(label)])
         # print("label: ", label)
-        cor = output['text'][:len(label)+2] == label
+        cor = label in output['text'][:len(label)+2]
         cors.append(cor)
 
     acc = np.mean(cors)
