@@ -6,6 +6,7 @@ import numpy as np
 
 choices = ["A", "B", "C", "D"]
 
+
 def format_example(df, idx, include_answer=True):
     prompt = df.iloc[idx, 0]
     k = df.shape[1] - 2
@@ -72,7 +73,10 @@ def cmmlu_eval(model, tokenizer, data_path, device):
     subjects = sorted([f.split(".csv")[0] for f in os.listdir(os.path.join(data_path, "test")) if ".csv" in f])
 
     for subject in subjects:
-        dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + ".csv"), header=None)[:k]
-        test_df = pd.read_csv(os.path.join(data_path, "test", subject + ".csv"), header=None)
+        dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + ".csv"))[:k]
+        test_df = pd.read_csv(os.path.join(data_path, "test", subject + ".csv"))
+
+        dev_df.drop("Unnamed: 0", axis=1, inplace=True)
+        test_df.drop("Unnamed: 0", axis=1, inplace=True)
 
         cors, acc = eval(model, tokenizer, subject, dev_df, test_df, device)
