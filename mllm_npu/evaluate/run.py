@@ -44,7 +44,7 @@ def main(args):
     elif args.dataset_name == "cmmlu":
         cmmlu_eval(mllm_model, tokenizer, args.data_path, device)
     elif args.dataset_name == "bbh":
-        cmmlu_eval(mllm_model, tokenizer, args.data_path, device)
+        bbh_eval(mllm_model, tokenizer, args.data_path, device)
 
 
 
