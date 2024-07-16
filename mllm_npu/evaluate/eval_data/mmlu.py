@@ -6,6 +6,7 @@ import numpy as np
 
 choices = ["A", "B", "C", "D"]
 
+
 def format_example(df, idx, include_answer=True):
     prompt = df.iloc[idx, 0]
     k = df.shape[1] - 2
