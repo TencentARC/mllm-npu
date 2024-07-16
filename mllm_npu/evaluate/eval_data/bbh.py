@@ -29,7 +29,8 @@ def gen_prompt(train_data, subject, k=-1):
 def eval(model, tokenizer, subject, test_data, device):
     cors = []
 
-    for i in range(5, len(test_data["examples"])):
+    # for i in range(5, len(test_data["examples"])):
+    for i in range(5, 10):
         k = 5
         prompt_end = format_example(test_data, i, include_answer=False)
         train_prompt = gen_prompt(test_data, subject, k)
@@ -48,8 +49,8 @@ def eval(model, tokenizer, subject, test_data, device):
                 max_new_tokens=10
             )
 
-        print("pred", output['text'])
-        print("label", label)
+        print("pred:", output['text'])
+        print("label: ", label)
         # cor = output['text'][1] == label
         # cors.append(cor)
 
