@@ -47,7 +47,7 @@ def main(args):
     elif args.dataset_name == "bbh":
         bbh_eval(mllm_model, tokenizer, args.data_path, device)
     elif args.dataset_name == "ceval":
-        ceval(mllm_model, tokenizer, args.data_path, device)
+        ceval_eval(mllm_model, tokenizer, args.data_path, device)
 
 
 
