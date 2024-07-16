@@ -49,9 +49,9 @@ def eval(model, tokenizer, subject, test_data, device):
                 max_new_tokens=10
             )
 
-        print("pred:", output['text'][:len(label)])
-        print("label: ", label)
-        cor = output['text'][:len(label)] == label
+        # print("pred:", output['text'][:len(label)])
+        # print("label: ", label)
+        cor = output['text'][:len(label)+2] == label
         cors.append(cor)
 
     acc = np.mean(cors)
