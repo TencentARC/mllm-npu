@@ -29,8 +29,8 @@ def gen_prompt(train_data, subject, k=-1):
 def eval(model, tokenizer, subject, test_data, device):
     cors = []
 
-    # for i in range(5, len(test_data["examples"])):
-    for i in range(5, 10):
+    for i in range(5, len(test_data["examples"])):
+    # for i in range(5, 10):
         k = 5
         prompt_end = format_example(test_data, i, include_answer=False)
         train_prompt = gen_prompt(test_data, subject, k)
@@ -49,15 +49,17 @@ def eval(model, tokenizer, subject, test_data, device):
                 max_new_tokens=10
             )
 
-        print("pred:", output['text'])
-        print("label: ", label)
-        # cor = output['text'][1] == label
-        # cors.append(cor)
+        # print("pred:", output['text'])
+        # print("label: ", label)
+        cor = output['text'][:len(label)] == label
+        cors.append(cor)
 
-    # acc = np.mean(cors)
-    # cors = np.array(cors)
-    #
-    # print("Average accuracy {:.3f} - {}".format(acc, subject))
+    acc = np.mean(cors)
+    cors = np.array(cors)
+
+    print("Average accuracy {:.3f} - {}".format(acc, subject))
+
+    return cors, acc
 
 
 def bbh_eval(model, tokenizer, data_path, device):
@@ -67,4 +69,4 @@ def bbh_eval(model, tokenizer, data_path, device):
     for subject in subjects:
         test_data = json.load(open(os.path.join(data_path, "data", subject + ".json"), "r"))
 
-        eval(model, tokenizer, subject, test_data, device)
+        cors, acc = eval(model, tokenizer, subject, test_data, device)
