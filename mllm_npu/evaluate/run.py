@@ -17,6 +17,7 @@ from torch_npu.contrib import transfer_to_npu
 from mllm_npu.evaluate.eval_data.mmlu import mmlu_eval
 from mllm_npu.evaluate.eval_data.cmmlu import cmmlu_eval
 from mllm_npu.evaluate.eval_data.bbh import bbh_eval
+from mllm_npu.evaluate.eval_data.ceval import ceval_eval
 
 
 def main(args):
@@ -45,6 +46,8 @@ def main(args):
         cmmlu_eval(mllm_model, tokenizer, args.data_path, device)
     elif args.dataset_name == "bbh":
         bbh_eval(mllm_model, tokenizer, args.data_path, device)
+    elif args.dataset_name == "ceval":
+        ceval(mllm_model, tokenizer, args.data_path, device)
 
 
 
