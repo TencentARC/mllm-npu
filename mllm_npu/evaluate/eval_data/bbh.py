@@ -66,5 +66,7 @@ def bbh_eval(model, tokenizer, data_path, device):
 
     for subject in subjects:
         test_data = json.load(open(os.path.join(data_path, "data", subject + ".json"), "r"))
+        print(subject)
+        print(len(test_data))
 
         cors, acc = eval(model, tokenizer, subject, test_data, device)
