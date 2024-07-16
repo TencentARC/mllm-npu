@@ -1,23 +1,12 @@
 import hydra
 import torch
-import re
-import os
-import time
 import argparse
-import numpy as np
-import pandas as pd
 from omegaconf import OmegaConf
-from PIL import Image
-from mllm_npu.models.mllm import SEED
-from mllm_npu.data.utils import process_anyres_image
 
-import torch_npu
-from torch_npu.contrib import transfer_to_npu
-
-from mllm_npu.evaluate.eval_data.mmlu import mmlu_eval
-from mllm_npu.evaluate.eval_data.cmmlu import cmmlu_eval
-from mllm_npu.evaluate.eval_data.bbh import bbh_eval
-from mllm_npu.evaluate.eval_data.ceval import ceval_eval
+from evaluate.eval_data.mmlu import mmlu_eval
+from evaluate.eval_data.cmmlu import cmmlu_eval
+from evaluate.eval_data.bbh import bbh_eval
+from evaluate.eval_data.ceval import ceval_eval
 
 
 def main(args):
