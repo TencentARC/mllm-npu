@@ -40,6 +40,8 @@ For example, we give an implementation of a high-performance MLLM (i.e., SEED-X)
 
 ## 📢 News
 
+* **2024-07-24** 🔥 We release 7 Chinese and English pure text and multi-modal evaluation benchmarks.
+
 * **2024-07-08** 🔥 We release NPU-based multi-modal inference and pre-training code, and various ways to use SEED-X.
 
 ## 📋 TODOs

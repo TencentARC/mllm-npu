@@ -9,25 +9,20 @@ We now support the use of the following benchmarks.
 You can place the corresponding dataset under [./eval_data/](./eval_data/)
 
 - Pure Text
-
-  - [MMLU](https://github.com/hendrycks/test)
-  - [BBH](https://github.com/suzgunmirac/BIG-Bench-Hard/tree/main/bbh)
-  - [CMMLU](https://github.com/haonan-li/CMMLU)
-  - [C-Eval](https://github.com/hkust-nlp/ceval/tree/main)
+  
+  - English
+    - [MMLU](https://github.com/hendrycks/test)
+    - [BBH](https://github.com/suzgunmirac/BIG-Bench-Hard/tree/main/bbh)
+  - Chinese
+    - [CMMLU](https://github.com/haonan-li/CMMLU)
+    - [C-Eval](https://github.com/hkust-nlp/ceval/tree/main)
 
     
 - Multimodal
 
-  - SEED-Bench
-  - MME
-  - MMVet
+  - [SEED-Bench2](https://github.com/AILab-CVC/SEED-Bench/tree/main/SEED-Bench-2)
+  - [MME](https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation)
+  - [MMVet](https://github.com/yuweihao/MM-Vet/tree/main)
   - MMB
   - MMMU
   - CMMMU
-
-
-## Run Evaluation
-
-```shell
-python evaluate/run.py -dataset_name bbh -data_path ./eval_data/BBH
-```
