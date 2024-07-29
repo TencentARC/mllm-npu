@@ -3,12 +3,9 @@ import torch
 import argparse
 from omegaconf import OmegaConf
 
-import torch_npu
-from torch_npu.contrib import transfer_to_npu
-
 from evaluate.eval_data.mmlu import mmlu_eval
 from evaluate.eval_data.cmmlu import cmmlu_eval
-from evaluate.eval_data.bbh import bbh_eval
+from evaluate.bbh.bbh import bbh_eval
 from evaluate.eval_data.ceval import ceval_eval
 from evaluate.eval_data.seed_bench2 import seed_bench2_eval
 from evaluate.eval_data.mm_vet import mm_vet_eval
