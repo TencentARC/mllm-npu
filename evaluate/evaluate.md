@@ -53,7 +53,7 @@ We now support the use of the following benchmarks.
   
   You can download the dataset from [here](https://github.com/yuweihao/MM-Vet?tab=readme-ov-file).
   ```shell
-    python evaluate/run.py --dataset_name mme --data_path ./evaluate/mme/mme/
+    python evaluate/run.py --dataset_name mme --data_path ./evaluate/mme/mmvet/
   ```
   Your need to submit your mm-vet results (i.e., result.json) to the online evaluation [website](https://huggingface.co/spaces/whyu/MM-Vet_Evaluator).
   - MMB
