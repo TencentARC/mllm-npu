@@ -186,7 +186,7 @@ For supervised finetuning,  you can keep most settings unchanged and:
 3. follow the pre-training script for the rest.
 
 ## 🌟 Benchmark Evaluation
-coming soon
+We collected some popular English/Chinese plain text and multi-modal benchmarks (e.g., mmlu, cmmlu, etc.), see [here](./evaluate/evaluate.md) for details.
 
 
 ## 🚅 Acceleration
