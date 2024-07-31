@@ -68,8 +68,8 @@ def ceval_eval(model, tokenizer, data_path, device):
 
     for subject in subjects:
         print(subject)
-        dev_df = pd.read_csv(os.path.join("/group/40005/palchenli/projects_seedx/mllm-npu/evaluate/ceval/ceval/formal_ceval/", "dev", subject + "_dev.csv"))
-        test_df = pd.read_csv(os.path.join("/group/40005/palchenli/projects_seedx/mllm-npu/evaluate/ceval/ceval/formal_ceval/", "test", subject + "_test.csv"))
+        dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + "_dev.csv"))
+        test_df = pd.read_csv(os.path.join(data_path, "test", subject + "_test.csv"))
 
         result = eval(model, tokenizer, subject, dev_df, test_df, device)
         all_result[subject] = result
