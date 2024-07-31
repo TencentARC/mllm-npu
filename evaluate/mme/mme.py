@@ -117,13 +117,15 @@ def mme_eval(mllm_model, tokenizer, image_transform, data_path, device):
                             query = query.split("\t")[0]
                             answer += gen_res(mllm_model, tokenizer, image_transform, query, img_path, device)
 
+                            answer = answer.replace("\n", "")
+                            answer = answer.replace("\r", "")
+
                             outputs.append(answer)
                     except Exception as e:
                         continue
             elif task in task_2:
                 for file in os.listdir(task_path):
 
-                    # if True:
                     try:
                         if "txt" in file:
                             f = open(os.path.join(task_path, file), "r")
@@ -131,13 +133,19 @@ def mme_eval(mllm_model, tokenizer, image_transform, data_path, device):
                             f.close()
 
                             for query in input_text:
-                                answer = file.replace("txt", "jpg")
+                                if "_" not in task:
+                                    answer = file.replace("txt", "jpg")
+                                else:
+                                    answer = file.replace("txt", "png")
                                 img_path = os.path.join(task_path, answer)
                                 answer += "\t"
                                 answer += (query.strip() + "\t")
 
                                 query = query.split("\t")[0]
                                 answer += gen_res(mllm_model, tokenizer, image_transform, query, img_path, device)
+
+                                answer = answer.replace("\n", "")
+                                answer = answer.replace("\r", "")
 
                                 outputs.append(answer)
                     except Exception as e:

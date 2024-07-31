@@ -2,19 +2,19 @@ import os
 import pandas as pd
 import torch
 import numpy as np
+import json
 
 
 choices = ["A", "B", "C", "D"]
 
 
 def format_example(df, idx, include_answer=True):
-    prompt = df.iloc[idx, 0]
-    k = df.shape[1] - 2
-    for j in range(k):
-        prompt += "\n{}. {}".format(choices[j], df.iloc[idx, j+1])
+    prompt = df.iloc[idx]["question"]
+    for j in range(4):
+        prompt += "\n{}. {}".format(choices[j], df.iloc[idx][choices[j]])
     prompt += "\n答案:"
     if include_answer:
-        prompt += " {}\n\n".format(df.iloc[idx, k + 1])
+        prompt += " {}\n\n".format(df.iloc[idx]["answer"])
     return prompt
 
 
@@ -36,15 +36,13 @@ def gen_prompt(train_df, subject, k=-1):
 
 
 def eval(model, tokenizer, subject, dev_df, test_df, device):
-    cors = []
+    res_s = {}
 
-    # for i in range(test_df.shape[0]):
-    for i in range(5):
+    for i in range(test_df.shape[0]):
         k = 5
         prompt_end = format_example(test_df, i, include_answer=False)
         train_prompt = gen_prompt(dev_df, subject, k)
         prompt = train_prompt + prompt_end
-        label = test_df.iloc[i, test_df.shape[1] - 1]
 
         input_ids = tokenizer.encode(prompt, add_special_tokens=False)
         input_ids = [tokenizer.bos_token_id] + input_ids
@@ -58,27 +56,22 @@ def eval(model, tokenizer, subject, dev_df, test_df, device):
                 max_new_tokens=10
             )
 
-        cor = output['text'][1] == label
-        cors.append(cor)
+        res_s[str(i)] = output['text'][1]
 
-    acc = np.mean(cors)
-    cors = np.array(cors)
-
-    print("Average accuracy {:.3f} - {}".format(acc, subject))
-
-    return cors, acc
+    return res_s
 
 
 def ceval_eval(model, tokenizer, data_path, device):
     k = 5
-    subjects = sorted([f.split(".csv")[0] for f in os.listdir(os.path.join(data_path, "val")) if ".csv" in f])
+    subjects = sorted([f.split("_test.csv")[0] for f in os.listdir(os.path.join(data_path, "test")) if ".csv" in f])
+    all_result = {}
 
     for subject in subjects:
-        dev_df = pd.read_csv(os.path.join(data_path, "dev", subject + ".csv"), header=None)[:k]
-        test_df = pd.read_csv(os.path.join(data_path, "val", subject + ".csv"), header=None)
+        print(subject)
+        dev_df = pd.read_csv(os.path.join("/group/40005/palchenli/projects_seedx/mllm-npu/evaluate/ceval/ceval/formal_ceval/", "dev", subject + "_dev.csv"))
+        test_df = pd.read_csv(os.path.join("/group/40005/palchenli/projects_seedx/mllm-npu/evaluate/ceval/ceval/formal_ceval/", "test", subject + "_test.csv"))
 
-        dev_df.drop("id", axis=1, inplace=True)
-        dev_df.drop("explanation", axis=1, inplace=True)
-        test_df.drop("id", axis=1, inplace=True)
+        result = eval(model, tokenizer, subject, dev_df, test_df, device)
+        all_result[subject] = result
 
-        cors, acc = eval(model, tokenizer, subject, dev_df, test_df, device)
+    json.dump(all_result, open("result_ceval.json", "w"))

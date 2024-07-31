@@ -3,13 +3,13 @@ import torch
 import argparse
 from omegaconf import OmegaConf
 
-from evaluate.eval_data.mmlu import mmlu_eval
-from evaluate.eval_data.cmmlu import cmmlu_eval
+from evaluate.mmlu.mmlu import mmlu_eval
+from evaluate.cmmlu.cmmlu import cmmlu_eval
 from evaluate.bbh.bbh import bbh_eval
-from evaluate.eval_data.ceval import ceval_eval
-from evaluate.eval_data.seed_bench2 import seed_bench2_eval
-from evaluate.eval_data.mm_vet import mm_vet_eval
-from evaluate.eval_data.mme import mme_eval
+from evaluate.ceval.ceval import ceval_eval
+from evaluate.seed_bench2.seed_bench2 import seed_bench2_eval
+from evaluate.mmvet.mm_vet import mm_vet_eval
+from evaluate.mme.mme import mme_eval
 
 
 def main(args):
